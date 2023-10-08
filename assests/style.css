@@ -1,0 +1,6 @@
+.container1 { 
+    display: flex;
+    flex-wrap: wrap;
+    border: 2px solid;
+    justify-content: space-evenly;
+}
