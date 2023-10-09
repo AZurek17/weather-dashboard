@@ -85,23 +85,23 @@ function requestWeather(latCity, lonCity) {
         console.log(fecthedWeather.main.humidity)
 
         //--------added div classes and id's for weather
-        var dayDate = document.createElement('h3');
-        dayDate.textContent = (fecthedWeather.dt_text);
+        var dayDate = fecthedWeather.dt_text;
         displayCurrentDay.append("" + dayDate + "");
 
-        var dayTemp = document.createElement ('p');
-        dayTemp.textContent = (fecthedWeather.main.temp);
+        var dayTemp = fecthedWeather.main.temp;
         currentTemp.append("Temp: " + dayTemp + " .");
 
-        var dayWind = document.createElement ('p');
-        dayWind.textContent = (fecthedWeather.wind.speed);
+        var dayWind = fecthedWeather.wind.speed;
         currentWind.append("Wind: " + dayWind + " .");
 
-        var dayHumidity = document.createElement ('p');
-        dayHumidity.textContent = (fecthedWeather.main.humidity);
+        var dayHumidity = fecthedWeather.main.humidity;
         currentHumidity.append("Humidity: " + dayWind + " .");
          
+        // var dayDate = document.createElement('h3');
+        // dayDate.textContent = (fecthedWeather.dt_text);
+        // displayCurrentDay.append("" + dayDate + "");
 
+        
          
 
         }
