@@ -4,14 +4,14 @@ var cityInput = document.querySelector("#city-input");
 //-------------------- current day weather
 var searchHistoryTable = document.querySelector("#search-history-table");
 var displayCurrentDay = document.querySelector('#display-current-forcast');
-var currentDay = document.querySelector("#current-date");
-var currentTemp = document.querySelector("#curret-temp")
-var currentWind = document.querySelector("#current-wind")
-var currentHumidity = document.querySelector("#current-humidity")
+// var currentDay = document.querySelector(".current-date");
+// var currentTemp = document.querySelector(".curret-temp")
+// var currentWind = document.querySelector(".current-wind")
+// var currentHumidity = document.querySelector(".current-humidity")
 
 //--------------------forecast weather
 
-// var displayForecast = document.querySelector('#container-day1');
+var displayForecast = document.querySelector('#container-day1');
 // var forecastDay = document.querySelector("#current-date");
 // var forecastTemp = document.querySelector("#curret-temp")
 // var forecastWind = document.querySelector("#current-wind")
@@ -40,6 +40,7 @@ function requestCoord(cityInput){
         var latCity = fetchedCoords[0].lat.toFixed(0);
         var lonCity = fetchedCoords[0].lon.toFixed(0);
         requestWeather(latCity, lonCity);
+        requestForcast(latCity, lonCity);
         }
   
     for (var i = 0; i < fetchedCoords.length; i++) {
@@ -52,9 +53,6 @@ function requestCoord(cityInput){
     cityName.textContent = (cityInput);
     searchHistoryTable.append(cityName);
     
-    //localStorage.setitem("cityName", cityInput);
-
-    
     }
 })
 }
@@ -63,49 +61,48 @@ function requestCoord(cityInput){
 
 function requestWeather(latCity, lonCity) {
     var cityWeather = `https://api.openweathermap.org/data/2.5/weather?lat=${latCity},&lon=${lonCity},&units=imperial&appid=${apiKey}`
-    var cityForecast = `https://api.openweathermap.org/data/2.5/forecast?lat=${latCity},&lon=${lonCity},&units=imperial&appid=${apiKey}`
 
-//-----------------    
+ //-----------------    
     fetch(cityWeather)
     .then(function (response){
         console.log("fecthWeather", response);
         return response.json();
+        
     })
     .then(function (fecthedWeather){
-        console.log("Today's Weather", fecthedWeather);
-        console.log("Fetched Weather \n --------------")
-
-        if(fecthedWeather.length > 0) {
-        //for (var i = 0; i < fecthedWeather.length; i++){
+        console.log("Fetched Today's Weather", fecthedWeather);
+        for (var i = 0; i < fecthedWeather.length; i++){
+            console.log("-------------");  // log not needed
         //console.log(fecthedWeather[1])//all
-        console.log(fecthedWeather.dt_text)//date
-        console.log(fecthedWeather.weather[0].icon)
-        console.log(fecthedWeather.main.temp)
-        console.log(fecthedWeather.wind.speed)
-        console.log(fecthedWeather.main.humidity)
+           // console.log("date", fecthedWeather);//date
+            console.log("icon", fecthedWeather.weather[0].icon);
+            console.log("temp", fecthedWeather.main.temp);
+            console.log("wind", fecthedWeather.wind.speed);
+            console.log("humidity",fecthedWeather.main.humidity);
+            
+            var cityDay = document.createElement('h2');
+            cityName.innerT =`${fecthedWeather.dt}`;
+            displayCurrentDay.append(cityDay);
 
-        //--------added div classes and id's for weather
-        var dayDate = fecthedWeather.dt_text;
-        displayCurrentDay.append("" + dayDate + "");
+            var cityTemp = document.createElement('p');
+            cityTemp.textContent =`${fecthedWeather.main.temp}`;
+            displayCurrentDay.append(cityTemp);
 
-        var dayTemp = fecthedWeather.main.temp;
-        currentTemp.append("Temp: " + dayTemp + " .");
+            var cityWind = document.createElement('p');
+            cityWind.textContent =`${fecthedWeather.wind.speed}`;
+            displayCurrentDay.append(cityWind);
 
-        var dayWind = fecthedWeather.wind.speed;
-        currentWind.append("Wind: " + dayWind + " .");
+            var cityHumidity = document.createElement('p');
+            cityHumidity.textContent =`${fecthedWeather.main.humidity}`;
+            displayCurrentDay.append(cityHumidity);
+            };
+        })    
+    }
 
-        var dayHumidity = fecthedWeather.main.humidity;
-        currentHumidity.append("Humidity: " + dayWind + " .");
-         
-        // var dayDate = document.createElement('h3');
-        // dayDate.textContent = (fecthedWeather.dt_text);
-        // displayCurrentDay.append("" + dayDate + "");
-
-        
-         
-
-        }
-    })
+// forecast API endpoint 
+function requestForcast(latCity, lonCity) {
+    var cityForecast = `https://api.openweathermap.org/data/2.5/forecast?lat=${latCity},&lon=${lonCity},&units=imperial&appid=${apiKey}`
+     //-----------------    
 
     fetch(cityForecast)
     .then(function (response){
@@ -113,7 +110,7 @@ function requestWeather(latCity, lonCity) {
         return response.json();
     })
     .then(function (fecthedForecast){
-        console.log("Fetched Forecast \n --------------")
+        console.log("Fetched 5 day Forecast \n --------------")
         console.log(fecthedForecast);
         for (var i = 0; i < fecthedForecast.length; i++){
          //console.log(fecthedWeather[i])//all
@@ -123,10 +120,8 @@ function requestWeather(latCity, lonCity) {
          console.log(fecthedForecast[0].list.main.humidity)
         }
     })
-};
-    
 
-
+}
 
 //------------button eventListners
 btnSearch.addEventListener("click", handleCitySearch);
