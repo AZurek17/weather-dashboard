@@ -1,17 +1,27 @@
 var apiKey = "16987757a5619c71a67c99c96ec1bd39";
 var btnSearch = document.querySelector("#btn-search");
 var cityInput = document.querySelector("#city-input");
-//--------------------
+//-------------------- current day weather
 var searchHistoryTable = document.querySelector("#search-history-table");
-var displayCurrentForcast = document.querySelector('#display-current-forcast');
-//var displayFiveDayForcast = document.querySelector('ul');
+var displayCurrentDay = document.querySelector('#display-current-forcast');
+var currentDay = document.querySelector("#current-date");
+var currentTemp = document.querySelector("#curret-temp")
+var currentWind = document.querySelector("#current-wind")
+var currentHumidity = document.querySelector("#current-humidity")
+
+//--------------------forecast weather
+
+// var displayForecast = document.querySelector('#container-day1');
+// var forecastDay = document.querySelector("#current-date");
+// var forecastTemp = document.querySelector("#curret-temp")
+// var forecastWind = document.querySelector("#current-wind")
+// var forecastHumidity = document.querySelector("#forecast-humidity")
 
 //------------------------
 function handleCitySearch(){
     console.log("clicked");
     var userInput = cityInput.value.trim();
 requestCoord(userInput);
-
 }
 
 // coords endpoint for city search
@@ -38,9 +48,13 @@ function requestCoord(cityInput){
     console.log("City Coords lat", fetchedCoords[0].lat);/////
     console.log("City Coords Lon", fetchedCoords[0].lon);/////
 
-    var cityName = document.createElement('h3');
+    var cityName = document.createElement('h2');
     cityName.textContent = (cityInput);
-    displayCurrentForcast.append(cityName);
+    searchHistoryTable.append(cityName);
+    
+    //localStorage.setitem("cityName", cityInput);
+
+    
     }
 })
 }
@@ -58,14 +72,38 @@ function requestWeather(latCity, lonCity) {
         return response.json();
     })
     .then(function (fecthedWeather){
+        console.log("Today's Weather", fecthedWeather);
         console.log("Fetched Weather \n --------------")
-        console.log(fecthedWeather);
-        for (var i = 0; i < fecthedWeather.length; i++){
-         //console.log(fecthedWeather[i])//all
-         console.log(fecthedWeather[0].list.dt_text)//date
-         console.log(fecthedWeather[0].list.weather.icon)
-         console.log(fecthedWeather[0].list.wind.speed)
-         console.log(fecthedWeather[0].list.main.humidity)
+
+        if(fecthedWeather.length > 0) {
+        //for (var i = 0; i < fecthedWeather.length; i++){
+        //console.log(fecthedWeather[1])//all
+        console.log(fecthedWeather.dt_text)//date
+        console.log(fecthedWeather.weather[0].icon)
+        console.log(fecthedWeather.main.temp)
+        console.log(fecthedWeather.wind.speed)
+        console.log(fecthedWeather.main.humidity)
+
+        //--------added div classes and id's for weather
+        var dayDate = document.createElement('h3');
+        dayDate.textContent = (fecthedWeather.dt_text);
+        displayCurrentDay.append("" + dayDate + "");
+
+        var dayTemp = document.createElement ('p');
+        dayTemp.textContent = (fecthedWeather.main.temp);
+        currentTemp.append("Temp: " + dayTemp + " .");
+
+        var dayWind = document.createElement ('p');
+        dayWind.textContent = (fecthedWeather.wind.speed);
+        currentWind.append("Wind: " + dayWind + " .");
+
+        var dayHumidity = document.createElement ('p');
+        dayHumidity.textContent = (fecthedWeather.main.humidity);
+        currentHumidity.append("Humidity: " + dayWind + " .");
+         
+
+         
+
         }
     })
 
@@ -90,14 +128,5 @@ function requestWeather(latCity, lonCity) {
 
 
 
-
-
-//--------added div classes and id's for
-
-// var forcastCards = $("#forcast-card");
-// var forcastDay = [1, 2, 3, 4, 5];
-
-
-
-
+//------------button eventListners
 btnSearch.addEventListener("click", handleCitySearch);
