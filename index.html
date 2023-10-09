@@ -19,7 +19,7 @@
                 <div class="row">
                     <div class="col-4 p-4">
                         <section class="flex-row justify-center align-center bg-light">
-                            <section class="card card-rounded col-12 bg-white">
+                            <section class="card card-rounded col-12 bg-white p-4">
                                 <div class="text-center pt-4">
                                     <label for="cityInput1" class="form-label"><h2>Search for a City:</h2></label>
                                     <input type="city" class="form-control" id="city-input" placeholder="enter city name" style="width: 80%; padding: 5px; margin-left:10%;">
@@ -34,7 +34,7 @@
                     
                     <div class="col-8 p-3 bg-light">
                         <div class="p-2 card card-rounded" style="text-align: left;">
-                          <div id="display-current-forcast">
+                          <div id="display-current-forecast">
                             <!-- <h3 class="current-day"></h3>
                             <p class="current-temp"></p>
                             <p class="current-wind"></p>
@@ -42,67 +42,48 @@
                           </div>
                         </div>
 
-                        <div class="container1" style="text-align: left;">
+                        <div class="container2" style="text-align: left;">
                             <section class="row">
-                                <div class="col-12 col-md-12 p-4">
+                                <div class="col-8 col-md-12 p-4">
                                 <h2>5 Day Forcast:</h2>
                                 <main id="container-day"></main>
-                                <section class="row justify-content-around p-4">
+                                <section class="row justify-content-around">
                                     <div class="col-12 col-sm-6 col-lg-2 mb-3">
                                         <div class="card day-one">
-                                          <div class="card-body">
-                                            <p class="card-text">placeholder</p>
-                                            <i></i>
-                                            <p class="card-text">placeholder</p>
-                                            <p class="card-text">placeholder</p>
-                                            <p class="card-text">placeholder</p>
+                                          <div class="card-body card-text row" id="forecast-one">
+                                            
                                           </div>
                                         </div>
                                     </div> 
-                                    <!-- <div class="col-12 col-sm-6 col-lg-2 mb-3">
+                                    <div id="forecast-day-one"></div>
+                                    <div class="col-12 col-sm-6 col-lg-2 mb-3">
                                         <div class="card day-two">
-                                          <div class="card-body">
-                                            <p class="card-text">placeholder</p>
-                                            <i></i>
-                                            <p class="card-text">placeholder</p>
-                                            <p class="card-text">placeholder</p>
-                                            <p class="card-text">placeholder</p>
+                                          <div class="card-body card-text" id="forecast-two">
+                                            
                                           </div>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-6 col-lg-2 mb-3">
                                         <div class="card day-three">
-                                          <div class="card-body">
-                                            <p class="card-text">placeholder</p>
-                                            <i></i>
-                                            <p class="card-text">placeholder</p>
-                                            <p class="card-text">placeholder</p>
-                                            <p class="card-text">placeholder</p>
+                                          <div class="card-body card-text"  id="forecast-three">
+                                            
                                           </div>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-6 col-lg-2 mb-3">
                                         <div class="card day-four">
-                                          <div class="card-body">
-                                            <p class="card-text">placeholder</p>
-                                            <i></i>
-                                            <p class="card-text">placeholder</p>
-                                            <p class="card-text">placeholder</p>
-                                            <p class="card-text">placeholder</p>
+                                          <div class="card-body card-text"  id="forecast-four">
+                                            
                                           </div>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-6 col-lg-2 mb-3">
                                         <div class="card day-five">
-                                          <div class="card-body">
-                                            <p class="card-text">placeholder</p>
-                                            <i></i>
-                                            <p class="card-text">placeholder</p>
-                                            <p class="card-text">placeholder</p>
-                                            <p class="card-text">placeholder</p>
+                                          <div class="card-body card-text"  id="forecast-five">
+                                            
                                           </div>
                                         </div>
-                                    </div> -->
+                                    </div>
                                     
                                 </section>
                             </section>
@@ -116,3 +97,46 @@
     
 </body>
 </html>
+
+
+<!-- <div class="container1" style="text-align: left;">
+  <section class="row">
+      <div class="col-12 col-md-12 p-4">
+      <h2>5 Day Forcast:</h2>
+      <main id="container-day"></main>
+      <section class="row justify-content-around p-4">
+          <div class="col-12 col-sm-6 col-lg-2 mb-3">
+              <div class="card day-one">
+                <div class="card-body" >
+                  <div id="forecast-one">
+                </div>
+              </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-2 mb-3">
+            <div class="card day-two">
+              <div class="card-body" >
+                <div id="forecast-two">
+              </div>
+            </div>
+        </div> 
+        <div class="col-12 col-sm-6 col-lg-2 mb-3">
+          <div class="card day-three">
+            <div class="card-body" >
+              <div id="forecast-three">
+            </div>
+          </div>
+      </div> 
+      <div class="col-12 col-sm-6 col-lg-2 mb-3">
+        <div class="card day-four">
+          <div class="card-body" >
+            <div id="forecast-four">
+          </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-2 mb-3">
+      <div class="card day-five">
+        <div class="card-body" >
+          <div id="forecast-five">
+        </div>
+      </div>
+  </div>  -->
