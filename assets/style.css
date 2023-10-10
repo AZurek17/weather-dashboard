@@ -4,3 +4,12 @@
     border: 2px solid;
     justify-content: space-evenly;
 } */
+
+.card-body {
+    background-color: blue;
+    color: aliceblue;
+}
+.cb1 {
+    background-color:darkgrey;
+    color: aliceblue;
+}
