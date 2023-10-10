@@ -45,7 +45,7 @@ requestCoord(userInput);
 //-------------------------
 // coords endpoint for city search
 function requestCoord(cityInput){
-   var cityCoords = `http://api.openweathermap.org/geo/1.0/direct?q=${cityInput},&limit=1&appid=${apiKey}`
+   var cityCoords = `https://api.openweathermap.org/geo/1.0/direct?q=${cityInput},&limit=1&appid=${apiKey}`
    
    fetch(cityCoords)
    .then(function (response) {
@@ -73,6 +73,7 @@ function requestCoord(cityInput){
     cityName.textContent = (cityInput);
     searchHistoryTable.append(cityName);
     
+    
 })}
 
 //-------------------------------------------
@@ -97,8 +98,12 @@ function requestWeather(latCity, lonCity) {
         localStorage.setItem("wind", fecthedWeather.wind.speed);
         localStorage.setItem("humidity", fecthedWeather.main.humidity);
 
+            var iconId = localStorage.getItem("icon");
+            var weatherIcon = iconId
+
+            var currentCity = localStorage.getItem("City Name");
             var cityDay = document.createElement('h4');
-            cityDay.textContent = ("(" + today + ")");
+            cityDay.textContent = (currentCity + ", (" + today + ")  " + weatherIcon);
             displayDate.appendChild(cityDay);
             // var cityIcon = document.createElement('i');
             // cityIcon.textContent = (""(fecthedWeather.weather.icon))
