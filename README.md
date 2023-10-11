@@ -50,13 +50,12 @@ Current Weather Data:
     })
     .then(function (fecthedWeather){
         console.log("Fetched Today's Weather", fecthedWeather);
-        console.log("-------------");  // log not needed
-       
-            console.log("date", fecthedWeather.dt);//
-            console.log("icon", fecthedWeather.weather[0].icon);
-            console.log("temp", fecthedWeather.main.temp);
-            console.log("wind", fecthedWeather.wind.speed);
-            console.log("humidity", fecthedWeather.main.humidity);
+        
+        localStorage.setItem("date", fecthedWeather.dt);
+        localStorage.setItem("icon", fecthedWeather.weather[0].icon);
+        localStorage.setItem("temp", fecthedWeather.main.temp);
+        localStorage.setItem("wind", fecthedWeather.wind.speed);
+        localStorage.setItem("humidity", fecthedWeather.main.humidity);
     })
 }
 

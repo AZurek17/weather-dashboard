@@ -29,7 +29,7 @@ var tomorrow4 = new Date(tomorrow3);
 tomorrow4.setDate(tomorrow4.getDate() + 1);
 var tomorrow5 = new Date(tomorrow4);
 tomorrow5.setDate(tomorrow5.getDate() + 1);
-// today();
+
 //})
 
 //------------------------
@@ -98,15 +98,20 @@ function requestWeather(latCity, lonCity) {
         localStorage.setItem("wind", fecthedWeather.wind.speed);
         localStorage.setItem("humidity", fecthedWeather.main.humidity);
 
+
+        //--- weather icon
             var iconId = localStorage.getItem("icon");
-            var weatherIcon = iconId
+            
 
             var currentCity = localStorage.getItem("City Name");
             var cityDay = document.createElement('h4');
-            cityDay.textContent = (currentCity + ", (" + today + ")  " + weatherIcon);
+            cityDay.textContent = (currentCity + ", (" + today + ")  " + iconId);
             displayDate.appendChild(cityDay);
-            // var cityIcon = document.createElement('i');
-            // cityIcon.textContent = (""(fecthedWeather.weather.icon))
+
+            var cityIcon = document.createElement('p');
+            cityIcon.textContent = ("" + (fecthedWeather.weather[0].icon));
+            displayCurrentDay.appendChild(cityIcon);
+
             var cityTemp = document.createElement('p');
             cityTemp.textContent = ("Temp: " + (fecthedWeather.main.temp) + "F");
             displayCurrentDay.appendChild(cityTemp);
@@ -145,19 +150,30 @@ function requestForcast(latCity, lonCity) {
             forecastDate.textContent = (tomorrow1);
             displayForecastOne.appendChild(forecastDate);
 
+            var forecastIcon = document.createElement('p');
+            forecastIcon.textContent = ("" + (fecthedForecast.list[0].weather[0].icon));
+            displayForecastOne.appendChild(forecastIcon);
+
             var forecastTemp = document.createElement('p');
             forecastTemp.textContent = ("Temp: " + (fecthedForecast.list[0].main.temp) + "F");
             displayForecastOne.appendChild(forecastTemp);
+            
             var forecastWind = document.createElement('p');
             forecastWind.textContent = ("Wind: " + (fecthedForecast.list[0].wind.speed) + " MPH");
             displayForecastOne.appendChild(forecastWind);
+
             var forecastHumidity = document.createElement('p');
             forecastHumidity.textContent = ("Humidity: " + (fecthedForecast.list[0].main.humidity) + " %");
             displayForecastOne.appendChild(forecastHumidity);
+
+           
 //forecast two:
             var forecastDate = document.createElement('p');
             forecastDate.textContent = (tomorrow2);
             displayForecastTwo.appendChild(forecastDate);
+            var forecastIcon = document.createElement('p');
+            forecastIcon.textContent = ("" + (fecthedForecast.list[1].weather[0].icon));
+            displayForecastTwo.appendChild(forecastIcon);
             var forecastTemp = document.createElement('p');
             forecastTemp.textContent = ("Temp: " + (fecthedForecast.list[1].main.temp) + "F");
             displayForecastTwo.appendChild(forecastTemp);
@@ -171,6 +187,9 @@ function requestForcast(latCity, lonCity) {
             var forecastDate = document.createElement('p');
             forecastDate.textContent = (tomorrow3);
             displayForecastThree.appendChild(forecastDate);
+            var forecastIcon = document.createElement('p');
+            forecastIcon.textContent = ("" + (fecthedForecast.list[2].weather[0].icon));
+            displayForecastThree.appendChild(forecastIcon);
             var forecastTemp = document.createElement('p');
             forecastTemp.textContent = ("Temp: " + (fecthedForecast.list[2].main.temp) + "F");
             displayForecastThree.appendChild(forecastTemp);
@@ -184,6 +203,9 @@ function requestForcast(latCity, lonCity) {
             var forecastDate = document.createElement('p');
             forecastDate.textContent = (tomorrow4);
             displayForecastFour.appendChild(forecastDate);
+            var forecastIcon = document.createElement('p');
+            forecastIcon.textContent = ("" + (fecthedForecast.list[3].weather[0].icon));
+            displayForecastFour.appendChild(forecastIcon);
             var forecastTemp = document.createElement('p');
             forecastTemp.textContent = ("Temp: " + (fecthedForecast.list[3].main.temp) + "F");
             displayForecastFour.appendChild(forecastTemp);
@@ -197,6 +219,9 @@ function requestForcast(latCity, lonCity) {
             var forecastDate = document.createElement('p');
             forecastDate.textContent = (tomorrow4);
             displayForecastFive.appendChild(forecastDate);
+            var forecastIcon = document.createElement('p');
+            forecastIcon.textContent = ("" + (fecthedForecast.list[4].weather[0].icon));
+            displayForecastFive.appendChild(forecastIcon);
             var forecastTemp = document.createElement('p');
             forecastTemp.textContent = ("Temp: " + (fecthedForecast.list[4].main.temp) + "F");
             displayForecastFive.appendChild(forecastTemp);
@@ -211,12 +236,8 @@ function requestForcast(latCity, lonCity) {
         })
     }
 
-
-//};
 //------------button eventListners
 btnSearch.addEventListener("click", handleCitySearch);
-// cityHistory.addEventListener("click", function(event){
-//     var 
-// });
+
 
 
