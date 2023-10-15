@@ -17,8 +17,8 @@ var displayForecastFive = document.querySelector('#forecast-five');
 //---- day dates
 var savedCitys = [];
 
-//var today = dayjs().format('MMM D, YYYY');
-var today = new Date();//.toDateString();
+var today = dayjs().format('MMM D, YYYY');
+//var today = new Date();//.toDateString();
 var tomorrow1 = new Date(today);
 tomorrow1.setDate(tomorrow1.getDate() + 1);
 var tomorrow2 = new Date(tomorrow1);
@@ -90,6 +90,7 @@ function requestWeather(latCity, lonCity) {
     })
     .then(function (fecthedWeather){
         console.log("Fetched Today's Weather", fecthedWeather);
+        var iconUrl =(`https://openweathermap.org/img/wn/${fecthedWeather.weather[0].icon}@2x.png`);
         console.log("-------------");  // log not needed
        
         localStorage.setItem("date", fecthedWeather.dt);//
@@ -98,18 +99,17 @@ function requestWeather(latCity, lonCity) {
         localStorage.setItem("wind", fecthedWeather.wind.speed);
         localStorage.setItem("humidity", fecthedWeather.main.humidity);
 
-
+        
         //--- weather icon
-            var iconId = localStorage.getItem("icon");
-            
-
+            // var iconId = localStorage.getItem("icon");
+          
             var currentCity = localStorage.getItem("City Name");
             var cityDay = document.createElement('h4');
-            cityDay.textContent = (currentCity + ", (" + today + ")  " + iconId);
+            cityDay.textContent = (currentCity + ", (" + today + ")  ");
             displayDate.appendChild(cityDay);
 
-            var cityIcon = document.createElement('p');
-            cityIcon.textContent = ("" + (fecthedWeather.weather[0].icon));
+            var cityIcon = document.createElement('img');
+            cityIcon.setAttribute("src", iconUrl);
             displayCurrentDay.appendChild(cityIcon);
 
             var cityTemp = document.createElement('p');
@@ -138,6 +138,11 @@ function requestForcast(latCity, lonCity) {
     .then(function (fecthedForecast){
         console.log("Fetched 5 day Forecast \n --------------")
         console.log(fecthedForecast);
+        var iconUrl0 =(`https://openweathermap.org/img/wn/${fecthedForecast.list[0].weather[0].icon}@2x.png`);
+        var iconUrl1 =(`https://openweathermap.org/img/wn/${fecthedForecast.list[1].weather[0].icon}@2x.png`);
+        var iconUrl2 =(`https://openweathermap.org/img/wn/${fecthedForecast.list[2].weather[0].icon}@2x.png`);
+        var iconUrl3 =(`https://openweathermap.org/img/wn/${fecthedForecast.list[3].weather[0].icon}@2x.png`);
+        var iconUrl4 =(`https://openweathermap.org/img/wn/${fecthedForecast.list[4].weather[0].icon}@2x.png`);
         // for (var i = 0; i < fecthedForecast.length; i++){
          //console.log(fecthedWeather[i])//all
          localStorage.setItem("date", fecthedForecast.list[0].dt_txt);//date
@@ -150,8 +155,8 @@ function requestForcast(latCity, lonCity) {
             forecastDate.textContent = (tomorrow1);
             displayForecastOne.appendChild(forecastDate);
 
-            var forecastIcon = document.createElement('p');
-            forecastIcon.textContent = ("" + (fecthedForecast.list[0].weather[0].icon));
+            var forecastIcon = document.createElement('img');
+            forecastIcon.setAttribute("src", iconUrl0);
             displayForecastOne.appendChild(forecastIcon);
 
             var forecastTemp = document.createElement('p');
@@ -171,8 +176,8 @@ function requestForcast(latCity, lonCity) {
             var forecastDate = document.createElement('p');
             forecastDate.textContent = (tomorrow2);
             displayForecastTwo.appendChild(forecastDate);
-            var forecastIcon = document.createElement('p');
-            forecastIcon.textContent = ("" + (fecthedForecast.list[1].weather[0].icon));
+            var forecastIcon = document.createElement('img');
+            forecastIcon.setAttribute("src", iconUrl1);
             displayForecastTwo.appendChild(forecastIcon);
             var forecastTemp = document.createElement('p');
             forecastTemp.textContent = ("Temp: " + (fecthedForecast.list[1].main.temp) + "F");
@@ -187,8 +192,8 @@ function requestForcast(latCity, lonCity) {
             var forecastDate = document.createElement('p');
             forecastDate.textContent = (tomorrow3);
             displayForecastThree.appendChild(forecastDate);
-            var forecastIcon = document.createElement('p');
-            forecastIcon.textContent = ("" + (fecthedForecast.list[2].weather[0].icon));
+            var forecastIcon = document.createElement('img');
+            forecastIcon.setAttribute("src", iconUrl2);
             displayForecastThree.appendChild(forecastIcon);
             var forecastTemp = document.createElement('p');
             forecastTemp.textContent = ("Temp: " + (fecthedForecast.list[2].main.temp) + "F");
@@ -203,8 +208,8 @@ function requestForcast(latCity, lonCity) {
             var forecastDate = document.createElement('p');
             forecastDate.textContent = (tomorrow4);
             displayForecastFour.appendChild(forecastDate);
-            var forecastIcon = document.createElement('p');
-            forecastIcon.textContent = ("" + (fecthedForecast.list[3].weather[0].icon));
+            var forecastIcon = document.createElement('img');
+            forecastIcon.setAttribute("src", iconUrl3);
             displayForecastFour.appendChild(forecastIcon);
             var forecastTemp = document.createElement('p');
             forecastTemp.textContent = ("Temp: " + (fecthedForecast.list[3].main.temp) + "F");
@@ -219,8 +224,8 @@ function requestForcast(latCity, lonCity) {
             var forecastDate = document.createElement('p');
             forecastDate.textContent = (tomorrow4);
             displayForecastFive.appendChild(forecastDate);
-            var forecastIcon = document.createElement('p');
-            forecastIcon.textContent = ("" + (fecthedForecast.list[4].weather[0].icon));
+            var forecastIcon = document.createElement('img');
+            forecastIcon.setAttribute("src", iconUrl4);
             displayForecastFive.appendChild(forecastIcon);
             var forecastTemp = document.createElement('p');
             forecastTemp.textContent = ("Temp: " + (fecthedForecast.list[4].main.temp) + "F");
