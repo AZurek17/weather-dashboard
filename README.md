@@ -64,4 +64,3 @@ Current Weather Data:
 * AskBCS Learning Assistant
 * Tutoring Session
 * StudyGroup
-* Google Search
